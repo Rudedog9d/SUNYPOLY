@@ -3,23 +3,52 @@
 --------------------------------------------------------------------------*/
 
 #include <iostream>
+#include <typeinfo>
 using namespace std;
 
 #include "hash.h"
 
-   void store();
+    //--- Definition of hash constructor
+    Hash::Hash()
+    : container()
+    {
+        for(i=0;i<23;i++)
+        container[i] = "";//make sure every position is the array is empty
+    }
+    
+    void Hash::store(string word){
     /* * * * * * * * * *
-     Stores word in hash
+     Stores word in Hash
+     ('r') = 114  +  ('y') = 121  = 235%23 = 5
     * * * * * * * * * * */
-    void display_word();
+        i = ((int)word[0] + (int)word[word.length() - 1]) % 23;
+        bool stored = false;
+        while(!stored){
+            if (container[i] == ""){
+                container[i] = word;
+                stored = true;
+            } 
+            else if (i == HASH_CAPACITY - 1)
+                i = 0;
+            else
+                i++;
+        }
+        cout << container[i] << i <<endl;
+    }
+    void Hash::display_word(){
     /* * * * * * * * * *
-     displays a specific word from hash
+     displays a specific word from Hash
     * * * * * * * * * * */
-    void display_all();
+    }
+    void Hash::display_all(){
     /* * * * * * * * * *
-     displays all words in hash
+     displays all words in Hash
     * * * * * * * * * * */
-    int  find();
+        for(i=0;i<HASH_CAPACITY;i++)
+            cout << i << ": " << container[i] << endl;
+    }
+    int  Hash::find(){
     /* * * * * * * * * *
-     finds and returns location of word in hash
+     finds and returns location of word in Hash
     * * * * * * * * * * */
+    }

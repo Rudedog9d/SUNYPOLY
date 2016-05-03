@@ -12,11 +12,20 @@
 --------------------------------------------------------------------------*/
 
 #include <iostream>
+#ifndef HASH
+#define HASH
 
-class Stack
+const int HASH_CAPACITY = 23;
+typedef char HashElement;
+
+class Hash
 {
  public:
-    void store();
+
+    /***** Constructor *****/
+    Hash();
+
+    void store(string);
     /* * * * * * * * * *
      Stores word in hash
     * * * * * * * * * * */
@@ -36,6 +45,7 @@ class Stack
 
  private:
   /***** Data Members *****/
+    int i;
+    string container[HASH_CAPACITY];
 }; // end of class declaration
-
 #endif
