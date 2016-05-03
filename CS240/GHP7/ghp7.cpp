@@ -15,25 +15,43 @@ Intended Compiler: G++ on linux
 */
 
 #include <iostream>
-#include <string>
-#include <sstream>
-#include <vector>
 using namespace std;
 #include "hash.h"
 
 int main (void) {
 bool found = false;
 int i = 0,
+    loc = 0,
     exit_code = 0;
 string line = "";
-Hash words;
-cout << "Enter 15 words to be hashed, one per line" << endl;
-while(i < 15 && line != "stop"){
+Hash words; //create new Hash named words
+
+//read in 15 words from user
+cout << "Enter 15 words to be hashed, one per line." << endl;
+for(i=0;i<15;i++){
     getline(cin,line);
-    //cout << line << endl;
-    words.store(line);
+    //if line is empty, don't accept
+    if(line > "")
+        words.store(line);
+    else
+        cout << "Not a valid entry!\n";
 }
+
+//display entire hash
 words.display_all();
 
-cout << endl;
+//allow user to search for words
+cout << "Enter words to search for, one per line. Enter \"stop\" to end program \n";
+while(line != "stop"){
+    getline(cin,line);
+    if(line != "stop"){
+        loc = words.find(line);
+        if(loc < 0)
+            cout << "\"" << line << "\" was not found!\n";
+        else
+            cout << "\"" << line << "\" was found at location " << loc << endl;
+    }
+
+}
+
 return exit_code;  }//end of main

@@ -11,7 +11,6 @@
 
 --------------------------------------------------------------------------*/
 
-#include <iostream>
 #ifndef HASH
 #define HASH
 
@@ -25,27 +24,28 @@ class Hash
     /***** Constructor *****/
     Hash();
 
-    void store(string);
+    void store(std::string);
     /* * * * * * * * * *
-     Stores word in hash
-    * * * * * * * * * * */
-    void display_word();
-    /* * * * * * * * * *
-     displays a specific word from hash
+     Stores word in Hash based on value returned from get_hash():
     * * * * * * * * * * */
     void display_all();
     /* * * * * * * * * *
-     displays all words in hash
+     Displays all words in the hash
     * * * * * * * * * * */
-    int  find();
+    int find(std::string);
+    /* * * * * * * * * * 
+     Finds and returns the location of a word in the hash
+    * * * * * * * * * * */
+    int get_hash (std::string);
     /* * * * * * * * * *
-     finds and returns location of word in hash
+     hashes a word based on the following function
+     ((first_letter) +  (last_letter))%HASH_CAPACITY
     * * * * * * * * * * */
-
+ 
 
  private:
   /***** Data Members *****/
     int i;
-    string container[HASH_CAPACITY];
+    std::string container[HASH_CAPACITY];
 }; // end of class declaration
 #endif
